@@ -1,0 +1,47 @@
+.am-tabs {
+	margin-top: 10px;
+}
+
+.am-nav-tabs > li > a {
+	color: #fff;
+}
+
+.am-nav > li > a:focus,
+.am-nav > li > a:hover,
+.am-nav-tabs > li.am-active > a,
+.am-nav-tabs > li.am-active > a:focus,
+.am-nav-tabs > li.am-active > a:hover {
+	color: #000;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.am-nav-tabs>li.am-active>a,
+.am-nav-tabs>li.am-active>a:focus,
+.am-nav-tabs>li.am-active>a:hover {
+	background-color: rgba(238, 238, 238, .4);
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border: none;
+}
+
+.am-tabs-bd .am-tab-panel.am-active {
+	background-color: rgba(238, 238, 238, .4);
+	border: none;
+}
+
+.am-tabs-bd {
+	border: none;
+}
+
+.chart-container {
+	border: solid 1px #ccc;
+	margin-top: 10px;
+	min-width: 450px;
+	height: 400px;
+}
+
+.user-am-g {
+	padding-top: 10px;
+}
+

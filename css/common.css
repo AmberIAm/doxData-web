@@ -1,0 +1,151 @@
+body {
+	background-image: url(../img/bg.jpg);
+	color: #fff;
+	overflow-y: auto;
+}
+
+a:focus, a:hover {
+	background-color: rgba(255, 255, 255, .2);
+}
+
+.am-list > li > a.am-active {
+	background-color: rgba(14, 144, 210, .7);
+}
+
+.admin-main,
+.am-topbar-inverse,
+.am-topbar, 
+.admin-sidebar-sub,
+.am-list > li,
+.admin-content {
+	background-color: transparent;
+}
+
+.am-list > li,
+.am-topbar-inverse {
+	border: none;
+}
+
+.admin-sidebar {
+	overflow-y: hidden;
+}
+
+.admin-sidebar-list li a {
+	color: #fff;
+}
+
+.am-topbar-brand strong {
+	font-size: 30px;
+	color: rgba(255, 255, 255, .4);
+	font-weight: normal;
+}
+
+.amlist{
+	color: #fff;
+}
+
+.admin-sidebar-list {
+	margin-left: 10px;
+	margin-top: 24px;
+	margin-right: 15px;
+}
+
+.admin-sidebar-list li,
+.am-tabs {
+	background-color: rgba(255, 255, 255, .2);
+}
+
+.admin-sidebar {
+	border: none;
+}
+
+.am-topbar-brand,
+.am-topbar-nav > li > a {
+	height: 60px;
+	line-height: 60px;
+}
+
+.admin-sidebar-sub li {
+	border-top: none;
+	border-radius: 5px;
+	margin-top: 2px;
+}
+
+.am-list > li {
+	margin-bottom: 1px;
+}
+
+.admin-content-body {
+	margin-top: 24px;
+}
+
+.am-padding {
+	padding: 0;
+}
+
+.am-text-lg {
+	color: #fff;
+	font-weight: normal;
+}
+
+.sub-title {
+	background-color: rgba(255, 255, 255, .2);
+	height: 50px;
+	line-height: 50px;
+	padding-left: 15px;
+}
+
+.admin-content{
+	margin-right: 10px;
+}
+
+.admin-content, .admin-sidebar {
+	overflow-y: hidden;
+}
+
+.admin-content-footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.foot-text {
+	text-align: center;
+	color: rgba(255, 255, 255, .4);
+}
+
+// .main-title {
+// 	font-size: 30px;
+// 	color: rgba(255, 255, 255, .4);
+// 	width: 450px;
+// 	height: 60px;
+// 	line-height: 60px;
+// }
+
+// .main-title strong {
+// 	font-weight: normal;
+// }
+
+// .top-tool {
+// 	height: 60px;
+// 	line-height: 60px;
+// }
+
+// .top-tool li {
+// 	display: inline;
+// 	float: left;
+// 	padding-left: 10px;
+// }
+
+// .top-tool a {
+// 	display: block;
+// 	width: 80px;
+// 	text-align: center;
+// 	color: #fff;
+// }
+
+// .top-tool a:hover {
+// 	background-color: rgba(0, 0, 0, .1);
+// }
+
+

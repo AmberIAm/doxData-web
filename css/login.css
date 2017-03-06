@@ -1,0 +1,91 @@
+.log-main {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 650px;
+	height: 280px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, .2);
+}
+
+.log-dox {
+	display: block;
+	margin-bottom: 20px;
+	margin-top: 18px;
+	-webkit-animation: til-effect 2s;
+	-moz-animation: til-effect 2s;
+	-o-animation: til-effect 2s;
+	animation: til-effect 2s;
+}
+
+.log-main span {
+	font-size: 35px;
+	font-weight: normal;
+}
+
+.log-margin {
+	margin-bottom: 10px;
+}
+
+.log-rmb {
+	text-align: left;
+	margin-bottom: 7px;
+}
+
+.am-checkbox {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+@keyframes til-effect {
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: .5;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes til-effect {
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: .5;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes til-effect {
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: .5;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@-o-keyframes til-effect {
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: .5;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+

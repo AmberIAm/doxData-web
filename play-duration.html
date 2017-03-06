@@ -1,0 +1,162 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>用户点播时长分析 | 多可视搜狐专区 - 数据分析系统</title>
+  <meta name="description" content="用户点播时长分析 | 多可视搜狐专区 - 数据分析系统">
+  <meta name="keywords" content="用户点播时长分析 | 多可视搜狐专区 - 数据分析系统">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-title" content="用户点播时长分析" />
+  <link rel="stylesheet" href="css/amazeui.min.css"/>
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="rl-body">
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，多可视搜狐专区 - 数据分析系统 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>多可视搜狐专区 - 数据分析系统</strong>
+  </div>
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      <li class="am-hide-sm-only"><a href="login.html" id="admin-fullscreen"><span class="am-icon-sign-in"></span> 登录</a></li>
+      <li class="am-hide-sm-only"><a href="login.html" id="admin-fullscreen"><span class="am-icon-power-off"></span> 注销</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="index.html"><span class="am-icon-home"></span> 首页</a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-1'}"><span class="am-icon-align-left"></span> 用户分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-1">
+            <li><a href="user-type.html"><span class="am-icon-user"></span> 用户类型</a></li>
+          </ul>
+        </li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-2'}"><span class="am-icon-align-left"></span> 点播分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-2">
+            <li><a href="#" class="am-active"><span class="am-icon-puzzle-piece"></span> 点播时长</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- sidebar end -->
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0 sub-title">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户点播时长分析</strong></div>
+      </div>
+      <div class="am-tabs" data-am-tabs>
+        <ul class="am-tabs-nav am-nav am-nav-tabs">
+          <li class="am-active"><a href="#tab1">按日</a></li>
+          <li><a href="#tab2">按周</a></li>
+          <li><a href="#tab3">按月</a></li>
+        </ul>
+        <!-- 按日查询开始 -->
+        <div class="am-tabs-bd">
+          <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+            <!-- 查询按钮开始 -->
+            <div class="am-g">
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years'}">
+                <input id="startTime" type="text" class="am-form-field" value="2017-01-01">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button id="my-startDate" class="am-btn am-btn-default" type="button"><span id="my-start" class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years'}">
+                <input id="endTime" type="text" class="am-form-field" value="2017-01-15">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button id="my-endDate" class="am-btn am-btn-default" type="button"><span id="my-end" class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <button id="doc-single-toggle" type="button" class="am-btn am-btn-primary am-u-sm-2 play-search-1" data-am-button>查询</button>
+            </div>
+            <!-- 查询按钮结束 -->
+            <div id="day-duration" class="chart-container"></div>
+          </div>
+          <!-- 按日查询结束 -->
+          <!-- 按周查询开始 -->
+          <div class="am-tab-panel am-fade" id="tab2">
+            <!-- 查询按钮开始 -->
+            <div class="am-g">
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}">
+                <input type="text" class="am-form-field" value="2017-01">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}">
+                <input type="text" class="am-form-field" value="2017-02">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <button id="doc-single-toggle" type="button" class="am-btn am-btn-primary am-u-sm-2 play-search-2" data-am-button>查询</button>
+            </div>
+            <!-- 查询按钮结束 -->
+            <div id="week-duration" class="chart-container"></div>
+          </div>
+          <!-- 按周查询结束 -->
+          <!-- 按月查询开始 -->
+          <div class="am-tab-panel am-fade" id="tab3">
+            <!-- 查询按钮开始 -->
+            <div class="am-g">
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy ', viewMode: 'years', minViewMode: 'years'}">
+                <input type="text" class="am-form-field" value="2016">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy ', viewMode: 'years', minViewMode: 'years'}">
+                <input type="text" class="am-form-field" value="2017">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <button id="doc-single-toggle" type="button" class="am-btn am-btn-primary am-u-sm-2 play-search-3" data-am-button>查询</button>
+            </div>
+            <!-- 查询按钮结束 -->
+            <div id="month-duration" class="chart-container"></div>
+          </div>
+          <!-- 按月查询结束 -->
+      </div> 
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+<footer class="main-footer">
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+  <p class="foot-text">© 2017 Singrand Infotech.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/chart-play.js"></script>
+</body>
+</html>
