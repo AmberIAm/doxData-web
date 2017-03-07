@@ -45,3 +45,9 @@
 	padding-top: 10px;
 }
 
+.main-container {
+	border: solid 1px #ccc;
+	margin-top: 10px;
+	min-width: 450px;
+	height: 400px;
+}

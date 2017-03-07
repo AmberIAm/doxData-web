@@ -1,0 +1,38 @@
+{    
+	"code": "200", 
+	"message": null, 
+	"data":[
+		{"date":"1","value":"331"},
+		{"date":"2","value":"2519"},
+		{"date":"3","value":"2909"},
+		{"date":"4","value":"290"},
+		{"date":"5","value":"909"},
+		{"date":"6","value":"519"},
+		{"date":"7","value":"1519"},
+		{"date":"8","value":"519"},
+		{"date":"9","value":"5149"},
+		{"date":"10","value":"3519"},
+		{"date":"11","value":"5159"},
+		{"date":"12","value":"519"},
+		{"date":"13","value":"3151"},
+		{"date":"14","value":"1261"},
+		{"date":"15","value":"131"},
+		{"date":"16","value":"1321"},
+		{"date":"17","value":"901"},
+		{"date":"18","value":"171"},
+		{"date":"19","value":"171"},
+		{"date":"20","value":"1771"},
+		{"date":"21","value":"171"},
+		{"date":"22","value":"1791"},
+		{"date":"23","value":"1651"},
+		{"date":"24","value":"9071"},
+		{"date":"25","value":"5171"},
+		{"date":"26","value":"5091"},
+		{"date":"27","value":"501"},
+		{"date":"28","value":"1015"},
+		{"date":"29","value":"1715"},
+		{"date":"30","value":"1471"},
+		{"date":"31","value":"3171"}
+	]
+}
+ 

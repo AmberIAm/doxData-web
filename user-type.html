@@ -62,24 +62,29 @@
         <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户类型分析</strong></div>
       </div>
       <div class="am-tabs">
-        <!-- 查询按钮开始 -->
-        <div class="am-g user-am-g">
-          <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy ', viewMode: 'years', minViewMode: 'years'}">
-            <input type="text" class="am-form-field" value="2016">
-            <span class="am-input-group-btn am-datepicker-add-on">
-              <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span></button>
-            </span>
+        <div class="am-tabs-bd">
+          <div class="am-tab-panel am-fade am-in am-active">
+            <!-- 查询按钮开始 -->
+            <div class="am-g">
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years'}">
+                <input id="startTime" type="text" class="am-form-field" value="2017-01-01">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button id="my-startDate" class="am-btn am-btn-default" type="button"><span id="my-start" class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy-mm-dd', viewMode: 'years'}">
+                <input id="endTime" type="text" class="am-form-field" value="2017-01-15">
+                <span class="am-input-group-btn am-datepicker-add-on">
+                  <button id="my-endDate" class="am-btn am-btn-default" type="button"><span id="my-end" class="am-icon-calendar"></span></button>
+                </span>
+              </div>
+              <button id="doc-single-toggle" type="button" class="am-btn am-btn-primary am-u-sm-2 play-search-1" data-am-button>查询</button>
+            </div>
+            <!-- 查询按钮结束 -->
+            <div id="user-type" class="chart-container"></div>
           </div>
-          <div class="am-input-group am-datepicker-date am-u-sm-5" data-am-datepicker="{format: 'yyyy ', viewMode: 'years', minViewMode: 'years'}">
-            <input type="text" class="am-form-field" value="2017">
-            <span class="am-input-group-btn am-datepicker-add-on">
-              <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span></button>
-            </span>
-          </div>
-          <button id="doc-single-toggle" type="button" class="am-btn am-btn-primary am-u-sm-2 user-search" data-am-button>查询</button>
         </div>
-        <!-- 查询按钮结束 -->
-        <div id="user-type" class="chart-container"></div>
+      </div>
     </div>
   </div>
   <!-- content end -->
@@ -102,6 +107,7 @@
 <script src="js/app.js"></script>
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/echarts.js"></script>
+<script src="js/theme.js"></script>
 <script src="js/chart-user.js"></script>
 </body>
 </html>

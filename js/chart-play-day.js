@@ -1,19 +1,15 @@
 //改变窗口大小时，同时改变图表大小
 setTimeout(function (){
     window.onresize = function() {
-        userType.resize();
+        dayDur.resize();
     }
 },200)
 
 //初始化图表实例
-var userType = echarts.init(document.getElementById('user-type'), 'infographic');
+var dayDur = echarts.init(document.getElementById('day-duration'), 'infographic');
 
 //初步配置图表通用项
 var option = {
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a}<br/>{b} : {c} (万户)"
-    },
     toolbox: {
         show: true,
         feature: {
@@ -40,19 +36,19 @@ var option = {
     yAxis: {}
 }
 
-//使用以上配置的图表通用项配置图表
-userType.setOption(option);
+//使用以上配置的图表通用项分别配置图表
+dayDur.setOption(option);
 
 //在图表未加载成功时，显示正在加载信息
-userType.showLoading();
+dayDur.showLoading();
 
-//用户类型分析:热心用户与一般用户
-var userDate = [];
-var actValue = []; 
-var noActValue = []; 
+//点播时长按日分析，显示图表
+var dayDate = [];
+var daySum = [];  
+var dayAvg = [];
 $.ajax({
     type: "get",
-    url: "./json/active-user.json",
+    url: "./json/day-sum.json",
     data: {
         // type: "day",
         // startTime: 2017/01/01,
@@ -62,12 +58,12 @@ $.ajax({
     success: function(data) {
         if (data.code == 200) {
             for (var i = 0; i < data.data.length; i++) {
-                userDate.push(data.data[i].date);
-                actValue.push(data.data[i].value);
+                dayDate.push(data.data[i].date);
+                daySum.push(data.data[i].value);
             }
             $.ajax({
                 type: "get",
-                url: "./json/noActive-user.json",
+                url: "./json/day-avg.json",
                 data: {
                     // type: "day",
                     // startTime: 2017/01/01,
@@ -77,21 +73,21 @@ $.ajax({
                 success: function(result) {
                     if (result.code == 200) {
                         for (var j = 0; j < result.data.length; j++) {
-                            noActValue.push(result.data[j].value);
+                            dayAvg.push(result.data[j].value);
                         }
-                        userType.hideLoading();
-                        userType.setOption({
+                        dayDur.hideLoading();
+                        dayDur.setOption({
                             title: {
-                                text: '用户类型分析图表'
+                                text: '用户点播时长按日分析图表'
                             },
                             legend: {
-                                data: ['热心用户', '一般用户'],
+                                data: ['点播时长总量', '点播时长均值'],
                             },
                             xAxis: {
                                 axisLabel: {
                                     rotate: '45'
                                 },
-                                data: userDate
+                                data: dayDate
                             },
                             series: [{
                                 itemStyle: {
@@ -102,9 +98,9 @@ $.ajax({
                                         }
                                     }
                                 },
-                                name: '热心用户',
+                                name: '点播时长总量',
                                 type: 'bar',
-                                data: actValue
+                                data: daySum
                             },
                             {
                                 itemStyle: {
@@ -115,9 +111,9 @@ $.ajax({
                                         }
                                     }
                                 },
-                                name: '一般用户',
-                                type: 'bar',
-                                data: noActValue
+                                name: '点播时长均值',
+                                type: 'line',
+                                data: dayAvg
                             }]
                         });
                     } else {
@@ -126,7 +122,7 @@ $.ajax({
                 },
                 error: function(errorMsg) {
                     alert("图表请求数据失败!");
-                    userType.hideLoading();
+                    dayDur.hideLoading();
                 }
             })
         } else {
@@ -135,20 +131,20 @@ $.ajax({
     },
     error: function(errorMsg) {
         alert("图表请求数据失败!");
-        userType.hideLoading();
+        dayDur.hideLoading();
     }
 })
 
 //点播时长按日分析，查询并显示图表
-$(".user-search").click(function(){
-    var newUserDate = [];
-    var newActValue = []; 
-    var newNoActValue = []; 
+$(".play-search-1").click(function(){
+    var newDayDate = [];
+    var newDaySum = [];  
+    var newDayAvg = [];
     var startTime = $("#startTime").val();
     var endTime = $("#endTime").val();
     $.ajax({
         type: "get",
-        url: "./json/active-user.json",
+        url: "./json/day-sum.json",
         data: {
             // type: "day",
             // startTime: 2017/01/01,
@@ -158,12 +154,13 @@ $(".user-search").click(function(){
         success: function(data) {
             if (data.code == 200) {
                 for (var i = 0; i < data.data.length; i++) {
-                    newUserDate.push(data.data[i].date);
-                    newActValue.push(data.data[i].value);
+                    newDayDate.push(data.data[i].date);
+                    newDaySum.push(data.data[i].value);
+
                 }
                 $.ajax({
                     type: "get",
-                    url: "./json/noActive-user.json",
+                    url: "./json/day-avg.json",
                     data: {
                         // type: "day",
                         // startTime: 2017/01/01,
@@ -173,21 +170,21 @@ $(".user-search").click(function(){
                     success: function(result) {
                         if (result.code == 200) {
                             for (var j = 0; j < result.data.length; j++) {
-                                newNoActValue.push(result.data[j].value);
+                                newDayAvg.push(result.data[j].value);
                             }
-                            userType.hideLoading();
-                            userType.setOption({
+                            dayDur.hideLoading();
+                            dayDur.setOption({
                                 title: {
-                                    text: '用户类型分析图表'
+                                    text: '用户点播时长按日分析图表'
                                 },
                                 legend: {
-                                    data: ['热心用户', '一般用户'],
+                                    data: ['点播时长总量', '点播时长均值'],
                                 },
                                 xAxis: {
                                     axisLabel: {
                                         rotate: '45'
                                     },
-                                    data: newUserDate
+                                    data: newDayDate
                                 },
                                 series: [{
                                     itemStyle: {
@@ -198,9 +195,9 @@ $(".user-search").click(function(){
                                             }
                                         }
                                     },
-                                    name: '热心用户',
+                                    name: '点播时长总量',
                                     type: 'bar',
-                                    data: newActValue
+                                    data: newDaySum
                                 },
                                 {
                                     itemStyle: {
@@ -211,9 +208,9 @@ $(".user-search").click(function(){
                                             }
                                         }
                                     },
-                                    name: '一般用户',
-                                    type: 'bar',
-                                    data: newNoActValue
+                                    name: '点播时长均值',
+                                    type: 'line',
+                                    data: newDayAvg
                                 }]
                             });
                         } else {
@@ -222,7 +219,7 @@ $(".user-search").click(function(){
                     },
                     error: function(errorMsg) {
                         alert("图表请求数据失败!");
-                        userType.hideLoading();
+                        dayDur.hideLoading();
                     }
                 })
             } else {
@@ -231,9 +228,7 @@ $(".user-search").click(function(){
         },
         error: function(errorMsg) {
             alert("图表请求数据失败!");
-            userType.hideLoading();
+            dayDur.hideLoading();
         }
     })
 })
-
-

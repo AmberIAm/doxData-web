@@ -1,19 +1,15 @@
 //改变窗口大小时，同时改变图表大小
 setTimeout(function (){
     window.onresize = function() {
-        userType.resize();
+        monthDur.resize();
     }
 },200)
 
 //初始化图表实例
-var userType = echarts.init(document.getElementById('user-type'), 'infographic');
+var monthDur = echarts.init(document.getElementById('month-duration'), 'infographic');
 
 //初步配置图表通用项
 var option = {
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a}<br/>{b} : {c} (万户)"
-    },
     toolbox: {
         show: true,
         feature: {
@@ -40,21 +36,21 @@ var option = {
     yAxis: {}
 }
 
-//使用以上配置的图表通用项配置图表
-userType.setOption(option);
+//使用以上配置的图表通用项分别配置图表
+monthDur.setOption(option);
 
 //在图表未加载成功时，显示正在加载信息
-userType.showLoading();
+monthDur.showLoading();
 
-//用户类型分析:热心用户与一般用户
-var userDate = [];
-var actValue = []; 
-var noActValue = []; 
+//点播时长按月分析，显示图表
+var monthDate = [];
+var monthSum = [];  
+var monthAvg = [];
 $.ajax({
     type: "get",
-    url: "./json/active-user.json",
+    url: "./json/month-sum.json",
     data: {
-        // type: "day",
+        // type: "month",
         // startTime: 2017/01/01,
         // endTime: 2017/01/25
     },
@@ -62,14 +58,14 @@ $.ajax({
     success: function(data) {
         if (data.code == 200) {
             for (var i = 0; i < data.data.length; i++) {
-                userDate.push(data.data[i].date);
-                actValue.push(data.data[i].value);
+                monthDate.push(data.data[i].date);
+                monthSum.push(data.data[i].value);
             }
             $.ajax({
                 type: "get",
-                url: "./json/noActive-user.json",
+                url: "./json/month-avg.json",
                 data: {
-                    // type: "day",
+                    // type: "month",
                     // startTime: 2017/01/01,
                     // endTime: 2017/01/25
                 },
@@ -77,21 +73,21 @@ $.ajax({
                 success: function(result) {
                     if (result.code == 200) {
                         for (var j = 0; j < result.data.length; j++) {
-                            noActValue.push(result.data[j].value);
+                            monthAvg.push(result.data[j].value);
                         }
-                        userType.hideLoading();
-                        userType.setOption({
+                        monthDur.hideLoading();
+                        monthDur.setOption({
                             title: {
-                                text: '用户类型分析图表'
+                                text: '用户点播时长按月分析图表'
                             },
                             legend: {
-                                data: ['热心用户', '一般用户'],
+                                data: ['点播时长总量', '点播时长均值'],
                             },
                             xAxis: {
                                 axisLabel: {
                                     rotate: '45'
                                 },
-                                data: userDate
+                                data: monthDate
                             },
                             series: [{
                                 itemStyle: {
@@ -102,9 +98,9 @@ $.ajax({
                                         }
                                     }
                                 },
-                                name: '热心用户',
+                                name: '点播时长总量',
                                 type: 'bar',
-                                data: actValue
+                                data: monthSum
                             },
                             {
                                 itemStyle: {
@@ -115,9 +111,9 @@ $.ajax({
                                         }
                                     }
                                 },
-                                name: '一般用户',
-                                type: 'bar',
-                                data: noActValue
+                                name: '点播时长均值',
+                                type: 'line',
+                                data: monthAvg
                             }]
                         });
                     } else {
@@ -126,7 +122,7 @@ $.ajax({
                 },
                 error: function(errorMsg) {
                     alert("图表请求数据失败!");
-                    userType.hideLoading();
+                    monthDur.hideLoading();
                 }
             })
         } else {
@@ -135,22 +131,22 @@ $.ajax({
     },
     error: function(errorMsg) {
         alert("图表请求数据失败!");
-        userType.hideLoading();
+        monthDur.hideLoading();
     }
 })
 
-//点播时长按日分析，查询并显示图表
-$(".user-search").click(function(){
-    var newUserDate = [];
-    var newActValue = []; 
-    var newNoActValue = []; 
+//点播时长按月分析，查询并显示图表
+$(".play-search-3").click(function(){
+    var newMonthDate = [];
+    var newMonthSum = [];  
+    var newMonthAvg = [];
     var startTime = $("#startTime").val();
     var endTime = $("#endTime").val();
     $.ajax({
         type: "get",
-        url: "./json/active-user.json",
+        url: "./json/month-sum.json",
         data: {
-            // type: "day",
+            // type: "month",
             // startTime: 2017/01/01,
             // endTime: 2017/01/25
         },
@@ -158,14 +154,15 @@ $(".user-search").click(function(){
         success: function(data) {
             if (data.code == 200) {
                 for (var i = 0; i < data.data.length; i++) {
-                    newUserDate.push(data.data[i].date);
-                    newActValue.push(data.data[i].value);
+                    newMonthDate.push(data.data[i].date);
+                    newMonthSum.push(data.data[i].value);
+
                 }
                 $.ajax({
                     type: "get",
-                    url: "./json/noActive-user.json",
+                    url: "./json/month-avg.json",
                     data: {
-                        // type: "day",
+                        // type: "month",
                         // startTime: 2017/01/01,
                         // endTime: 2017/01/25
                     },
@@ -173,21 +170,21 @@ $(".user-search").click(function(){
                     success: function(result) {
                         if (result.code == 200) {
                             for (var j = 0; j < result.data.length; j++) {
-                                newNoActValue.push(result.data[j].value);
+                                newMonthAvg.push(result.data[j].value);
                             }
-                            userType.hideLoading();
-                            userType.setOption({
+                            monthDur.hideLoading();
+                            monthDur.setOption({
                                 title: {
-                                    text: '用户类型分析图表'
+                                    text: '用户点播时长按月分析图表'
                                 },
                                 legend: {
-                                    data: ['热心用户', '一般用户'],
+                                    data: ['点播时长总量', '点播时长均值'],
                                 },
                                 xAxis: {
                                     axisLabel: {
                                         rotate: '45'
                                     },
-                                    data: newUserDate
+                                    data: newMonthDate
                                 },
                                 series: [{
                                     itemStyle: {
@@ -198,9 +195,9 @@ $(".user-search").click(function(){
                                             }
                                         }
                                     },
-                                    name: '热心用户',
+                                    name: '点播时长总量',
                                     type: 'bar',
-                                    data: newActValue
+                                    data: newMonthSum
                                 },
                                 {
                                     itemStyle: {
@@ -211,9 +208,9 @@ $(".user-search").click(function(){
                                             }
                                         }
                                     },
-                                    name: '一般用户',
-                                    type: 'bar',
-                                    data: newNoActValue
+                                    name: '点播时长均值',
+                                    type: 'line',
+                                    data: newMonthAvg
                                 }]
                             });
                         } else {
@@ -222,7 +219,7 @@ $(".user-search").click(function(){
                     },
                     error: function(errorMsg) {
                         alert("图表请求数据失败!");
-                        userType.hideLoading();
+                        monthDur.hideLoading();
                     }
                 })
             } else {
@@ -231,9 +228,7 @@ $(".user-search").click(function(){
         },
         error: function(errorMsg) {
             alert("图表请求数据失败!");
-            userType.hideLoading();
+            monthDur.hideLoading();
         }
     })
 })
-
-
