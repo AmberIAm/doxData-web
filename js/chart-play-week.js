@@ -1,12 +1,12 @@
+//初始化图表实例
+var weekDur = echarts.init(document.getElementById('week-duration'), 'infographic');
+
 //改变窗口大小时，同时改变图表大小
 setTimeout(function (){
     window.onresize = function() {
         weekDur.resize();
     }
 },200)
-
-//初始化图表实例
-var weekDur = echarts.init(document.getElementById('week-duration'), 'infographic');
 
 //初步配置图表通用项
 var option = {
@@ -110,7 +110,7 @@ $.ajax({
                                     }
                                 },
                                 name: '点播时长均值',
-                                type: 'line',
+                                type: 'bar',
                                 data: weekAvg
                             }]
                         });
@@ -118,7 +118,7 @@ $.ajax({
                         alert(result.message);
                     }
                 },
-                error: function(errorMsg) {
+                error: function() {
                     alert("图表请求数据失败!");
                     weekDur.hideLoading();
                 }
@@ -127,7 +127,7 @@ $.ajax({
             alert(data.message);
         }
     },
-    error: function(errorMsg) {
+    error: function() {
         alert("图表请求数据失败!");
         weekDur.hideLoading();
     }
@@ -154,7 +154,6 @@ $(".play-search-2").click(function(){
                 for (var i = 0; i < data.data.length; i++) {
                     newWeekDate.push(data.data[i].date);
                     newWeekSum.push(data.data[i].value);
-
                 }
                 $.ajax({
                     type: "get",
@@ -205,7 +204,7 @@ $(".play-search-2").click(function(){
                                         }
                                     },
                                     name: '点播时长均值',
-                                    type: 'line',
+                                    type: 'bar',
                                     data: newWeekAvg
                                 }]
                             });
@@ -213,7 +212,7 @@ $(".play-search-2").click(function(){
                             alert(result.message);
                         }
                     },
-                    error: function(errorMsg) {
+                    error: function() {
                         alert("图表请求数据失败!");
                         weekDur.hideLoading();
                     }
@@ -222,7 +221,7 @@ $(".play-search-2").click(function(){
                 alert(data.message);
             }
         },
-        error: function(errorMsg) {
+        error: function() {
             alert("图表请求数据失败!");
             weekDur.hideLoading();
         }

@@ -1,12 +1,12 @@
+//初始化图表实例
+var dayDur = echarts.init(document.getElementById('day-duration'), 'infographic');
+
 //改变窗口大小时，同时改变图表大小
 setTimeout(function (){
     window.onresize = function() {
         dayDur.resize();
     }
 },200)
-
-//初始化图表实例
-var dayDur = echarts.init(document.getElementById('day-duration'), 'infographic');
 
 //初步配置图表通用项
 var option = {
@@ -112,7 +112,7 @@ $.ajax({
                                     }
                                 },
                                 name: '点播时长均值',
-                                type: 'line',
+                                type: 'bar',
                                 data: dayAvg
                             }]
                         });
@@ -120,7 +120,7 @@ $.ajax({
                         alert(result.message);
                     }
                 },
-                error: function(errorMsg) {
+                error: function() {
                     alert("图表请求数据失败!");
                     dayDur.hideLoading();
                 }
@@ -129,7 +129,7 @@ $.ajax({
             alert(data.message);
         }
     },
-    error: function(errorMsg) {
+    error: function() {
         alert("图表请求数据失败!");
         dayDur.hideLoading();
     }
@@ -209,7 +209,7 @@ $(".play-search-1").click(function(){
                                         }
                                     },
                                     name: '点播时长均值',
-                                    type: 'line',
+                                    type: 'bar',
                                     data: newDayAvg
                                 }]
                             });
@@ -217,7 +217,7 @@ $(".play-search-1").click(function(){
                             alert(result.message);
                         }
                     },
-                    error: function(errorMsg) {
+                    error: function() {
                         alert("图表请求数据失败!");
                         dayDur.hideLoading();
                     }
@@ -226,7 +226,7 @@ $(".play-search-1").click(function(){
                 alert(data.message);
             }
         },
-        error: function(errorMsg) {
+        error: function() {
             alert("图表请求数据失败!");
             dayDur.hideLoading();
         }

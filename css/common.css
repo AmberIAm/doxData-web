@@ -8,8 +8,10 @@ a:focus, a:hover {
 	background-color: rgba(255, 255, 255, .2);
 }
 
-.am-list > li > a.am-active {
-	background-color: rgba(14, 144, 210, .7);
+.am-list > li > a.am-active,
+.am-list>li>a.am-active:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: #000;
 }
 
 .admin-main,
@@ -114,38 +116,5 @@ a:focus, a:hover {
 	color: rgba(255, 255, 255, .4);
 }
 
-// .main-title {
-// 	font-size: 30px;
-// 	color: rgba(255, 255, 255, .4);
-// 	width: 450px;
-// 	height: 60px;
-// 	line-height: 60px;
-// }
-
-// .main-title strong {
-// 	font-weight: normal;
-// }
-
-// .top-tool {
-// 	height: 60px;
-// 	line-height: 60px;
-// }
-
-// .top-tool li {
-// 	display: inline;
-// 	float: left;
-// 	padding-left: 10px;
-// }
-
-// .top-tool a {
-// 	display: block;
-// 	width: 80px;
-// 	text-align: center;
-// 	color: #fff;
-// }
-
-// .top-tool a:hover {
-// 	background-color: rgba(0, 0, 0, .1);
-// }
 
 

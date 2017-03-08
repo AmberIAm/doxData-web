@@ -1,12 +1,12 @@
+//初始化图表实例
+var userType = echarts.init(document.getElementById('user-type'), 'infographic');
+
 //改变窗口大小时，同时改变图表大小
 setTimeout(function (){
     window.onresize = function() {
         userType.resize();
     }
 },200)
-
-//初始化图表实例
-var userType = echarts.init(document.getElementById('user-type'), 'infographic');
 
 //初步配置图表通用项
 var option = {
@@ -124,7 +124,7 @@ $.ajax({
                         alert(result.message);
                     }
                 },
-                error: function(errorMsg) {
+                error: function() {
                     alert("图表请求数据失败!");
                     userType.hideLoading();
                 }
@@ -133,7 +133,7 @@ $.ajax({
             alert(data.message);
         }
     },
-    error: function(errorMsg) {
+    error: function() {
         alert("图表请求数据失败!");
         userType.hideLoading();
     }
@@ -220,7 +220,7 @@ $(".user-search").click(function(){
                             alert(result.message);
                         }
                     },
-                    error: function(errorMsg) {
+                    error: function() {
                         alert("图表请求数据失败!");
                         userType.hideLoading();
                     }
@@ -229,7 +229,7 @@ $(".user-search").click(function(){
                 alert(data.message);
             }
         },
-        error: function(errorMsg) {
+        error: function() {
             alert("图表请求数据失败!");
             userType.hideLoading();
         }
