@@ -2,7 +2,7 @@
 var weekDur = echarts.init(document.getElementById('week-duration'), 'infographic');
 
 //改变窗口大小时，同时改变图表大小
-setTimeout(function (){
+setTimeout(function() {
     window.onresize = function() {
         weekDur.resize();
     }
@@ -87,32 +87,34 @@ $.ajax({
                                 name: '周',
                                 data: weekDate
                             },
-                            series: [{
-                                itemStyle: {
-                                    normal: {
-                                        label: {
-                                            show: true,
-                                            position: 'top'
+                            series: [
+                                {
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,
+                                                position: 'top'
+                                            }
                                         }
-                                    }
+                                    },
+                                    name: '点播时长总量',
+                                    type: 'bar',
+                                    data: weekSum
                                 },
-                                name: '点播时长总量',
-                                type: 'bar',
-                                data: weekSum
-                            },
-                            {
-                                itemStyle: {
-                                    normal: {
-                                        label: {
-                                            show: true,
-                                            position: 'top',
+                                {
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,
+                                                position: 'top',
+                                            }
                                         }
-                                    }
-                                },
-                                name: '点播时长均值',
-                                type: 'bar',
-                                data: weekAvg
-                            }]
+                                    },
+                                    name: '点播时长均值',
+                                    type: 'bar',
+                                    data: weekAvg
+                                }
+                            ]
                         });
                     } else {
                         alert(result.message);
@@ -138,8 +140,8 @@ $(".play-search-2").click(function(){
     var newWeekDate = [];
     var newWeekSum = [];  
     var newWeekAvg = [];
-    var startTime = $("#startTime").val();
-    var endTime = $("#endTime").val();
+    var startTime = $("#startTime-pw").val();
+    var endTime = $("#endTime-pw").val();
     $.ajax({
         type: "get",
         url: "./json/week-sum.json",
@@ -181,32 +183,34 @@ $(".play-search-2").click(function(){
                                     name: '周',
                                     data: newWeekDate
                                 },
-                                series: [{
-                                    itemStyle: {
-                                        normal: {
-                                            label: {
-                                                show: true,
-                                                position: 'top'
+                                series: [
+                                    {
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,
+                                                    position: 'top'
+                                                }
                                             }
-                                        }
+                                        },
+                                        name: '点播时长总量',
+                                        type: 'bar',
+                                        data: newWeekSum
                                     },
-                                    name: '点播时长总量',
-                                    type: 'bar',
-                                    data: newWeekSum
-                                },
-                                {
-                                    itemStyle: {
-                                        normal: {
-                                            label: {
-                                                show: true,
-                                                position: 'top',
+                                    {
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,
+                                                    position: 'top',
+                                                }
                                             }
-                                        }
-                                    },
-                                    name: '点播时长均值',
-                                    type: 'bar',
-                                    data: newWeekAvg
-                                }]
+                                        },
+                                        name: '点播时长均值',
+                                        type: 'bar',
+                                        data: newWeekAvg
+                                    }
+                                ]
                             });
                         } else {
                             alert(result.message);

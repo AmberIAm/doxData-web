@@ -1,8 +1,11 @@
 //初始化页面时验证是否记住用户名
-$(document).ready(function() {
+$(function() {
     if ($.cookie("rmbUser") == "true") {
         $("#rmb-user").attr("checked", true);
         $("#username").val($.cookie("username"));
+        alert($.cookie("username"));
+        // $("#admin").css("display", "block");
+        // $("#admin").val($.cookie("user"));
         $("#password").val($.cookie("password"));
     }
 });
@@ -10,11 +13,11 @@ $(document).ready(function() {
 //保存用户名
 function saveUserInfo() {
     if ($("#rmb-user").attr("checked") == true) {
-        var userName = $("#username").val();
-        var passWord = $("#password").val();
-        $.cookie("rmbUser", "true", { expires: 7 }); // 存储一个带7天期限的 cookie
-        $.cookie("username", username, { expires: 7 }); // 存储一个带7天期限的 cookie
-        $.cookie("password", password, { expires: 7 }); // 存储一个带7天期限的 cookie
+        var user = $("#username").val();
+        var pwd = $("#password").val();
+        $.cookie("rmbUser", "true", { expires: 7 });
+        $.cookie("username", user, { expires: 7 });
+        $.cookie("password", pwd, { expires: 7 });
     }
     else {
         $.cookie("rmbUser", "false", { expires: -1 });
@@ -24,31 +27,39 @@ function saveUserInfo() {
 }
 
 //登录
-$('#login').click(function () {
+$("#login").click(function(){
     var user = $("#username").val();
     var pwd = $("#password").val();
-    if ($('#username').val() == "" || $('#password').val() == "") {
+    if (user == "" || pwd == "") {
         alert("用户名或密码不能为空！");
-    }
-    else {
+    } else {
         $.ajax({
             type: "post",
-            url: "",
+            url: "./json/login.json",
             data: {
-                user: user,
-                pwd: pwd
+                // user: user,
+                // pwd: pwd
             },
-            datatype: 'json',
+            dataType: "json",
             success: function(result) {
                 if(result.code == 200) {
-                    window.location.href = "../index.html";
+                    window.location.href = "./index.html";
+                    $("#admin").css("display", "block");
+                    $("#admin").html(user);
                 } else {
                     alert("用户名或密码错误！");
-                }
+                }   
+                // for (var i = 0; i < result.data.length; i++) {
+                //     if (result.data[i].user == user && result.data[i].pwd == pwd) {
+                //         window.location.href = "./index.html";
+                //     } else {
+                //         alert("用户名或密码错误！");
+                //     } 
+                // }         
             },
-            error: function(error) {
+            error: function() {
                 alert("error");
             }
         });
     }
-});
+})

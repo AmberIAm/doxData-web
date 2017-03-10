@@ -2,7 +2,7 @@
 var dayDur = echarts.init(document.getElementById('day-duration'), 'infographic');
 
 //改变窗口大小时，同时改变图表大小
-setTimeout(function (){
+setTimeout(function() {
     window.onresize = function() {
         dayDur.resize();
     }
@@ -89,32 +89,34 @@ $.ajax({
                                 },
                                 data: dayDate
                             },
-                            series: [{
-                                itemStyle: {
-                                    normal: {
-                                        label: {
-                                            show: true,
-                                            position: 'top'
+                            series: [
+                                {
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,
+                                                position: 'top'
+                                            }
                                         }
-                                    }
+                                    },
+                                    name: '点播时长总量',
+                                    type: 'bar',
+                                    data: daySum
                                 },
-                                name: '点播时长总量',
-                                type: 'bar',
-                                data: daySum
-                            },
-                            {
-                                itemStyle: {
-                                    normal: {
-                                        label: {
-                                            show: true,
-                                            position: 'top',
+                                {
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,
+                                                position: 'top',
+                                            }
                                         }
-                                    }
-                                },
-                                name: '点播时长均值',
-                                type: 'bar',
-                                data: dayAvg
-                            }]
+                                    },
+                                    name: '点播时长均值',
+                                    type: 'bar',
+                                    data: dayAvg
+                                }
+                            ]
                         });
                     } else {
                         alert(result.message);
@@ -140,8 +142,8 @@ $(".play-search-1").click(function(){
     var newDayDate = [];
     var newDaySum = [];  
     var newDayAvg = [];
-    var startTime = $("#startTime").val();
-    var endTime = $("#endTime").val();
+    var startTime = $("#startTime-pd").val();
+    var endTime = $("#endTime-pd").val();
     $.ajax({
         type: "get",
         url: "./json/day-sum.json",
@@ -156,7 +158,6 @@ $(".play-search-1").click(function(){
                 for (var i = 0; i < data.data.length; i++) {
                     newDayDate.push(data.data[i].date);
                     newDaySum.push(data.data[i].value);
-
                 }
                 $.ajax({
                     type: "get",
@@ -186,32 +187,34 @@ $(".play-search-1").click(function(){
                                     },
                                     data: newDayDate
                                 },
-                                series: [{
-                                    itemStyle: {
-                                        normal: {
-                                            label: {
-                                                show: true,
-                                                position: 'top'
+                                series: [
+                                    {
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,
+                                                    position: 'top'
+                                                }
                                             }
-                                        }
+                                        },
+                                        name: '点播时长总量',
+                                        type: 'bar',
+                                        data: newDaySum
                                     },
-                                    name: '点播时长总量',
-                                    type: 'bar',
-                                    data: newDaySum
-                                },
-                                {
-                                    itemStyle: {
-                                        normal: {
-                                            label: {
-                                                show: true,
-                                                position: 'top',
+                                    {
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,
+                                                    position: 'top',
+                                                }
                                             }
-                                        }
-                                    },
-                                    name: '点播时长均值',
-                                    type: 'bar',
-                                    data: newDayAvg
-                                }]
+                                        },
+                                        name: '点播时长均值',
+                                        type: 'bar',
+                                        data: newDayAvg
+                                    }
+                                ]
                             });
                         } else {
                             alert(result.message);

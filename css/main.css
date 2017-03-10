@@ -2,10 +2,6 @@
 	margin-top: 10px;
 }
 
-.home-main {
-	background-color: rgba(238, 238, 238, .4);
-}
-
 .am-nav-tabs > li > a {
 	color: #fff;
 }
@@ -47,11 +43,4 @@
 
 .user-am-g {
 	padding-top: 10px;
-}
-
-.home-chart-container {
-	border: solid 1px #ccc;
-	margin-top: 10px;
-	min-width: 450px;
-	height: 500px;
 }

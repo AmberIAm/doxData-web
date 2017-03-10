@@ -111,6 +111,10 @@ a:focus, a:hover {
 	width: 100%;
 }
 
+#admin {
+	display: none;
+}
+
 .foot-text {
 	text-align: center;
 	color: rgba(255, 255, 255, .4);

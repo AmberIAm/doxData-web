@@ -2,7 +2,7 @@
 var monthDur = echarts.init(document.getElementById('month-duration'), 'infographic');
 
 //改变窗口大小时，同时改变图表大小
-setTimeout(function (){
+setTimeout(function() {
     window.onresize = function() {
         monthDur.resize();
     }
@@ -89,32 +89,34 @@ $.ajax({
                                 },
                                 data: monthDate
                             },
-                            series: [{
-                                itemStyle: {
-                                    normal: {
-                                        label: {
-                                            show: true,
-                                            position: 'top'
+                            series: [
+                                {
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,
+                                                position: 'top'
+                                            }
                                         }
-                                    }
+                                    },
+                                    name: '点播时长总量',
+                                    type: 'bar',
+                                    data: monthSum
                                 },
-                                name: '点播时长总量',
-                                type: 'bar',
-                                data: monthSum
-                            },
-                            {
-                                itemStyle: {
-                                    normal: {
-                                        label: {
-                                            show: true,
-                                            position: 'top',
+                                {
+                                    itemStyle: {
+                                        normal: {
+                                            label: {
+                                                show: true,
+                                                position: 'top',
+                                            }
                                         }
-                                    }
-                                },
-                                name: '点播时长均值',
-                                type: 'bar',
-                                data: monthAvg
-                            }]
+                                    },
+                                    name: '点播时长均值',
+                                    type: 'bar',
+                                    data: monthAvg
+                                }
+                            ]
                         });
                     } else {
                         alert(result.message);
@@ -140,8 +142,8 @@ $(".play-search-3").click(function(){
     var newMonthDate = [];
     var newMonthSum = [];  
     var newMonthAvg = [];
-    var startTime = $("#startTime").val();
-    var endTime = $("#endTime").val();
+    var startTime = $("#startTime-pm").val();
+    var endTime = $("#endTime-pm").val();
     $.ajax({
         type: "get",
         url: "./json/month-sum.json",
@@ -156,7 +158,6 @@ $(".play-search-3").click(function(){
                 for (var i = 0; i < data.data.length; i++) {
                     newMonthDate.push(data.data[i].date);
                     newMonthSum.push(data.data[i].value);
-
                 }
                 $.ajax({
                     type: "get",
@@ -186,32 +187,34 @@ $(".play-search-3").click(function(){
                                     },
                                     data: newMonthDate
                                 },
-                                series: [{
-                                    itemStyle: {
-                                        normal: {
-                                            label: {
-                                                show: true,
-                                                position: 'top'
+                                series: [
+                                    {
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,
+                                                    position: 'top'
+                                                }
                                             }
-                                        }
+                                        },
+                                        name: '点播时长总量',
+                                        type: 'bar',
+                                        data: newMonthSum
                                     },
-                                    name: '点播时长总量',
-                                    type: 'bar',
-                                    data: newMonthSum
-                                },
-                                {
-                                    itemStyle: {
-                                        normal: {
-                                            label: {
-                                                show: true,
-                                                position: 'top',
+                                    {
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: true,
+                                                    position: 'top',
+                                                }
                                             }
-                                        }
-                                    },
-                                    name: '点播时长均值',
-                                    type: 'bar',
-                                    data: newMonthAvg
-                                }]
+                                        },
+                                        name: '点播时长均值',
+                                        type: 'bar',
+                                        data: newMonthAvg
+                                    }
+                                ]
                             });
                         } else {
                             alert(result.message);
