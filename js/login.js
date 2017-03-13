@@ -1,33 +1,17 @@
-//初始化页面时验证是否记住用户名
 $(function() {
-    if ($.cookie("rmbUser") == "true") {
+    //从缓存中取出用户名相关信息
+    if($.cookie("dox-rmb") == "true") {
+        $("#username").val($.cookie("dox-user"));
+        $("#password").val($.cookie("dox-pwd"));
         $("#rmb-user").attr("checked", true);
-        $("#username").val($.cookie("username"));
-        alert($.cookie("username"));
-        // $("#admin").css("display", "block");
-        // $("#admin").val($.cookie("user"));
-        $("#password").val($.cookie("password"));
     }
+    //显示登录用户名
+    var admin = $.cookie("dox-user");
+    $("#admin").html("<span class='am-icon-sign-in'>" + "</span>" + admin);
 });
 
-//保存用户名
-function saveUserInfo() {
-    if ($("#rmb-user").attr("checked") == true) {
-        var user = $("#username").val();
-        var pwd = $("#password").val();
-        $.cookie("rmbUser", "true", { expires: 7 });
-        $.cookie("username", user, { expires: 7 });
-        $.cookie("password", pwd, { expires: 7 });
-    }
-    else {
-        $.cookie("rmbUser", "false", { expires: -1 });
-        $.cookie("username", '', { expires: -1 });
-        $.cookie("password", '', { expires: -1 });
-    }
-}
-
-//登录
-$("#login").click(function(){
+//点击登录
+$("#login").click(function() {
     var user = $("#username").val();
     var pwd = $("#password").val();
     if (user == "" || pwd == "") {
@@ -43,19 +27,21 @@ $("#login").click(function(){
             dataType: "json",
             success: function(result) {
                 if(result.code == 200) {
+                    //将用户名相关信息存入缓存
+                    if($("#rmb-user").attr("checked") == "checked") {
+                        $.cookie("dox-user", user, { expires: 7 });
+                        $.cookie("dox-pwd", pwd, { expires: 7 });
+                        $.cookie("dox-rmb", "true", { expires: 7 });
+                    } else {
+                        $.cookie("dox-user", user, { expires: 7 });
+                        $.cookie("dox-pwd", "", { expires: 7 });
+                        $.cookie("dox-rmb", "false", { expires: 7 });
+                    }
+                    //登录成功，跳转页面
                     window.location.href = "./index.html";
-                    $("#admin").css("display", "block");
-                    $("#admin").html(user);
                 } else {
                     alert("用户名或密码错误！");
                 }   
-                // for (var i = 0; i < result.data.length; i++) {
-                //     if (result.data[i].user == user && result.data[i].pwd == pwd) {
-                //         window.location.href = "./index.html";
-                //     } else {
-                //         alert("用户名或密码错误！");
-                //     } 
-                // }         
             },
             error: function() {
                 alert("error");

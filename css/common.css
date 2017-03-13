@@ -111,8 +111,19 @@ a:focus, a:hover {
 	width: 100%;
 }
 
+.am-hide-sm-only {
+	height: 60px;
+	line-height: 60px;
+}
+
+.am-icon-sign-in {
+	margin-right: 5px;
+	width: 14px;
+}
+
 #admin {
-	display: none;
+	display: inline-block;
+	font-weight: 600;
 }
 
 .foot-text {
