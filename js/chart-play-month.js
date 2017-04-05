@@ -1,17 +1,28 @@
 //初始化图表实例
-var monthDur = echarts.init(document.getElementById('month-duration'), 'infographic');
+var monthDur = echarts.init(document.getElementById("month-duration"), "infographic");
 
 //改变窗口大小时，同时改变图表大小
 setTimeout(function() {
     window.onresize = function() {
         monthDur.resize();
     }
-},200)
+}, 200);
 
 //初步配置图表通用项
 var option = {
+    grid: {
+        left: "5%",
+        top: 90,
+        right: "4%",    
+        bottom: 70,
+        tooltip: {
+            trigger: "item",
+            formatter: "{a}<br/>{b} : {c} (万户)"
+        }
+    },
     toolbox: {
         show: true,
+        right: "20",
         feature: {
             dataZoom: {
                 yAxisIndex: false
@@ -20,21 +31,21 @@ var option = {
                 readOnly: true
             },
             magicType: {
-                type: ['line', 'bar']
+                type: ["line", "bar"]
             },
             saveAsImage: {
-                name: 'dox-chart'
+                name: "dox-chart"
             }
         }
     },
     xAxis: {
         axisLabel: {
-            interval: '0',
+            interval: "0"
         },
         data: []
     },
     yAxis: {}
-}
+};
 
 //使用以上配置的图表通用项分别配置图表
 monthDur.setOption(option);
@@ -44,7 +55,7 @@ monthDur.showLoading();
 
 //点播时长按月分析，显示图表
 var monthDate = [];
-var monthSum = [];  
+var monthSum = [];
 var monthAvg = [];
 $.ajax({
     type: "get",
@@ -78,14 +89,14 @@ $.ajax({
                         monthDur.hideLoading();
                         monthDur.setOption({
                             title: {
-                                text: '用户点播时长按月分析图表'
+                                text: "用户点播时长按月分析图表"
                             },
                             legend: {
-                                data: ['点播时长总量', '点播时长均值'],
+                                data: ["点播时长总量", "点播时长均值"]
                             },
                             xAxis: {
                                 axisLabel: {
-                                    rotate: '45'
+                                    rotate: "45"
                                 },
                                 data: monthDate
                             },
@@ -95,12 +106,12 @@ $.ajax({
                                         normal: {
                                             label: {
                                                 show: true,
-                                                position: 'top'
+                                                position: "top"
                                             }
                                         }
                                     },
-                                    name: '点播时长总量',
-                                    type: 'bar',
+                                    name: "点播时长总量",
+                                    type: "bar",
                                     data: monthSum
                                 },
                                 {
@@ -108,12 +119,12 @@ $.ajax({
                                         normal: {
                                             label: {
                                                 show: true,
-                                                position: 'top',
+                                                position: "top",
                                             }
                                         }
                                     },
-                                    name: '点播时长均值',
-                                    type: 'bar',
+                                    name: "点播时长均值",
+                                    type: "bar",
                                     data: monthAvg
                                 }
                             ]
@@ -135,15 +146,15 @@ $.ajax({
         alert("图表请求数据失败!");
         monthDur.hideLoading();
     }
-})
+});
 
 //点播时长按月分析，查询并显示图表
-$(".play-search-3").click(function(){
+$(".pdm-search").click(function(){
     var newMonthDate = [];
-    var newMonthSum = [];  
+    var newMonthSum = [];
     var newMonthAvg = [];
-    var startTime = $("#startTime-pm").val();
-    var endTime = $("#endTime-pm").val();
+    var startTimePdm = $(".start-time-pdm").val();
+    var endTimePdm = $(".end-time-pdm").val();
     $.ajax({
         type: "get",
         url: "./json/month-sum.json",
@@ -176,14 +187,14 @@ $(".play-search-3").click(function(){
                             monthDur.hideLoading();
                             monthDur.setOption({
                                 title: {
-                                    text: '用户点播时长按月分析图表'
+                                    text: "用户点播时长按月分析图表"
                                 },
                                 legend: {
-                                    data: ['点播时长总量', '点播时长均值'],
+                                    data: ["点播时长总量", "点播时长均值"],
                                 },
                                 xAxis: {
                                     axisLabel: {
-                                        rotate: '45'
+                                        rotate: "45"
                                     },
                                     data: newMonthDate
                                 },
@@ -193,12 +204,12 @@ $(".play-search-3").click(function(){
                                             normal: {
                                                 label: {
                                                     show: true,
-                                                    position: 'top'
+                                                    position: "top"
                                                 }
                                             }
                                         },
-                                        name: '点播时长总量',
-                                        type: 'bar',
+                                        name: "点播时长总量",
+                                        type: "bar",
                                         data: newMonthSum
                                     },
                                     {
@@ -206,12 +217,12 @@ $(".play-search-3").click(function(){
                                             normal: {
                                                 label: {
                                                     show: true,
-                                                    position: 'top',
+                                                    position: "top"
                                                 }
                                             }
                                         },
-                                        name: '点播时长均值',
-                                        type: 'bar',
+                                        name: "点播时长均值",
+                                        type: "bar",
                                         data: newMonthAvg
                                     }
                                 ]
@@ -234,4 +245,4 @@ $(".play-search-3").click(function(){
             monthDur.hideLoading();
         }
     })
-})
+});

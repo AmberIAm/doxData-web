@@ -1,26 +1,26 @@
 //初始化图表实例
-var userType = echarts.init(document.getElementById('user-type'), 'infographic');
+var userType = echarts.init(document.getElementById("user-type"), "infographic");
 
 //改变窗口大小时，同时改变图表大小
 setTimeout(function() {
     window.onresize = function() {
         userType.resize();
     }
-},200);
+}, 200);
 
 //容器
 var userDate = [];
-var userValue = []; 
-var actValue = []; 
+var userValue = [];
+var actValue = [];
 var noActValue = [];
 var newUserDate = [];
-var newUserValue = []; 
-var newActValue = []; 
+var newUserValue = [];
+var newActValue = [];
 var newNoActValue = [];
 
 //取值
-var startTime = $("#startTime-ut").val();
-var endTime = $("#endTime-ut").val(); 
+var startTimeUt = $(".start-time-ut").val();
+var endTimeUt = $(".end-time-ut").val();
 
 //在图表未加载成功时，显示正在加载信息
 userType.showLoading();
@@ -31,8 +31,8 @@ $.ajax({
     url: "./json/all-user.json",
     data: {
         // type: "day",
-        // startTime: startTime,
-        // endTime: endTime
+        // startTime: startTimeUt,
+        // endTime: endTimeUt
     },
     dataType: "json",
     success: function(data) {
@@ -57,8 +57,8 @@ $.ajax({
     url: "./json/active-user.json",
     data: {
         // type: "day",
-        // startTime: startTime,
-        // endTime: endTime
+        // startTime: startTimeUt,
+        // endTime: endTimeUt
     },
     dataType: "json",
     success: function(data) {
@@ -82,8 +82,8 @@ $.ajax({
     url: "./json/noActive-user.json",
     data: {
         // type: "day",
-        // startTime: startTime,
-        // endTime: endTime
+        // startTime: startTimeUt,
+        // endTime: endTimeUt
     },
     dataType: "json",
     success: function(data) {
@@ -105,12 +105,19 @@ $.ajax({
 
 //图表配置项
 option = {
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a}<br/>{b} : {c} (万户)"
+    grid: {
+        left: "5%",
+        top: 90,
+        right: "4%",
+        bottom: 70,
+        tooltip: {
+            trigger: "item",
+            formatter: "{a}<br/>{b} : {c} (万户)"
+        }
     },
     toolbox: {
         show: true,
+        right: "20",
         feature: {
             dataZoom: {
                 yAxisIndex: false
@@ -119,26 +126,26 @@ option = {
                 readOnly: true
             },
             magicType: {
-                type: ['line', 'bar']
+                type: ["line", "bar"]
             },
             saveAsImage: {
-                name: 'dox-chart'
+                name: "dox-chart"
             }
         }
     },
     yAxis: {
-        name: '(万户)'
+        name: "(万户)"
     },
     title: {
-        text: '用户类型分析图表'
+        text: "用户类型分析图表"
     },
     legend: {
-        data: ['用户总数', '热心用户', '一般用户']
+        data: ["用户总数", "热心用户", "一般用户"]
     },
     xAxis: {
         axisLabel: {
-            interval: '0',
-            rotate: '45',
+            interval: "0",
+            rotate: "45",
         },
         data: userDate
     },
@@ -148,12 +155,12 @@ option = {
                 normal: {
                     label: {
                         show: true,
-                        position: 'top'
+                        position: "top"
                     }
                 }
             },
-            name: '用户总数',
-            type: 'bar',
+            name: "用户总数",
+            type: "bar",
             data: userValue
         },
         {
@@ -161,12 +168,12 @@ option = {
                 normal: {
                     label: {
                         show: true,
-                        position: 'top'
+                        position: "top"
                     }
                 }
             },
-            name: '热心用户',
-            type: 'bar',
+            name: "热心用户",
+            type: "bar",
             data: actValue
         },
         {
@@ -174,12 +181,12 @@ option = {
                 normal: {
                     label: {
                         show: true,
-                        position: 'top',
+                        position: "top",
                     }
                 }
             },
-            name: '一般用户',
-            type: 'bar',
+            name: "一般用户",
+            type: "bar",
             data: noActValue
         }
     ]
@@ -189,15 +196,15 @@ option = {
 userType.setOption(option);
 
 //查询时间段
-$(".user-search").click(function(){
+$(".ut-search").click(function(){
     //获取用户总数
     $.ajax({
         type: "get",
         url: "./json/all-user.json",
         data: {
             // type: "day",
-            // startTime: startTime,
-            // endTime: endTime
+            // startTime: startTimeUt,
+            // endTime: endTimeUt
         },
         dataType: "json",
         success: function(data) {
@@ -221,8 +228,8 @@ $(".user-search").click(function(){
         url: "./json/active-user.json",
         data: {
             // type: "day",
-            // startTime: startTime,
-            // endTime: endTime
+            // startTime: startTimeUt,
+            // endTime: endTimeUt
         },
         dataType: "json",
         success: function(data) {
@@ -266,9 +273,9 @@ $(".user-search").click(function(){
         }
     });
     //图表配置项
-    option = {
+    var option = {
         tooltip : {
-            trigger: 'item',
+            trigger: "item",
             formatter: "{a}<br/>{b} : {c} (万户)"
         },
         toolbox: {
@@ -281,26 +288,26 @@ $(".user-search").click(function(){
                     readOnly: true
                 },
                 magicType: {
-                    type: ['line', 'bar']
+                    type: ["line", "bar"]
                 },
                 saveAsImage: {
-                    name: 'dox-chart'
+                    name: "dox-chart"
                 }
             }
         },
         yAxis: {
-            name: '(万户)'
+            name: "(万户)"
         },
         title: {
-            text: '用户类型分析图表'
+            text: "用户类型分析图表"
         },
         legend: {
-            data: ['用户总数', '热心用户', '一般用户']
+            data: ["用户总数", "热心用户", "一般用户"]
         },
         xAxis: {
             axisLabel: {
-                interval: '0',
-                rotate: '45',
+                interval: "0",
+                rotate: "45",
             },
             data: newUserDate
         },
@@ -310,12 +317,12 @@ $(".user-search").click(function(){
                     normal: {
                         label: {
                             show: true,
-                            position: 'top'
+                            position: "top"
                         }
                     }
                 },
-                name: '用户总数',
-                type: 'bar',
+                name: "用户总数",
+                type: "bar",
                 data: newUserValue
             },
             {
@@ -323,12 +330,12 @@ $(".user-search").click(function(){
                     normal: {
                         label: {
                             show: true,
-                            position: 'top'
+                            position: "top"
                         }
                     }
                 },
-                name: '热心用户',
-                type: 'bar',
+                name: "热心用户",
+                type: "bar",
                 data: newActValue
             },
             {
@@ -336,16 +343,16 @@ $(".user-search").click(function(){
                     normal: {
                         label: {
                             show: true,
-                            position: 'top',
+                            position: "top",
                         }
                     }
                 },
-                name: '一般用户',
-                type: 'bar',
+                name: "一般用户",
+                type: "bar",
                 data: newNoActValue
             }
         ]
     };
     //使用以上配置项配置图表
     userType.setOption(option);
-})
+});

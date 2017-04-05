@@ -128,7 +128,18 @@ a:focus, a:hover {
 
 .foot-text {
 	text-align: center;
-	color: rgba(255, 255, 255, .4);
+    margin-top: 15px;
+	color: rgba(255, 255, 255, .9);
+}
+
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.mg-bottom {
+    margin-bottom: 80px;
 }
 
 

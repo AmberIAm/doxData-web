@@ -1,17 +1,28 @@
 //初始化图表实例
-var dayDur = echarts.init(document.getElementById('day-duration'), 'infographic');
+var dayDur = echarts.init(document.getElementById("day-duration"), "infographic");
 
 //改变窗口大小时，同时改变图表大小
 setTimeout(function() {
     window.onresize = function() {
         dayDur.resize();
     }
-},200)
+}, 200);
 
 //初步配置图表通用项
 var option = {
+    grid: {
+        left: "5%",
+        top: 90,
+        right: "4%",
+        bottom: 70,
+        tooltip: {
+            trigger: "item",
+            formatter: "{a}<br/>{b} : {c} (万户)"
+        }
+    },
     toolbox: {
         show: true,
+        right: "20",
         feature: {
             dataZoom: {
                 yAxisIndex: false
@@ -20,21 +31,21 @@ var option = {
                 readOnly: true
             },
             magicType: {
-                type: ['line', 'bar']
+                type: ["line", "bar"]
             },
             saveAsImage: {
-                name: 'dox-chart'
+                name: "dox-chart"
             }
         }
     },
     xAxis: {
         axisLabel: {
-            interval: '0',
+            interval: "0"
         },
         data: []
     },
     yAxis: {}
-}
+};
 
 //使用以上配置的图表通用项分别配置图表
 dayDur.setOption(option);
@@ -44,7 +55,7 @@ dayDur.showLoading();
 
 //点播时长按日分析，显示图表
 var dayDate = [];
-var daySum = [];  
+var daySum = [];
 var dayAvg = [];
 $.ajax({
     type: "get",
@@ -78,14 +89,14 @@ $.ajax({
                         dayDur.hideLoading();
                         dayDur.setOption({
                             title: {
-                                text: '用户点播时长按日分析图表'
+                                text: "用户点播时长按日分析图表"
                             },
                             legend: {
-                                data: ['点播时长总量', '点播时长均值'],
+                                data: ["点播时长总量", "点播时长均值"]
                             },
                             xAxis: {
                                 axisLabel: {
-                                    rotate: '45'
+                                    rotate: "45"
                                 },
                                 data: dayDate
                             },
@@ -95,12 +106,12 @@ $.ajax({
                                         normal: {
                                             label: {
                                                 show: true,
-                                                position: 'top'
+                                                position: "top"
                                             }
                                         }
                                     },
-                                    name: '点播时长总量',
-                                    type: 'bar',
+                                    name: "点播时长总量",
+                                    type: "bar",
                                     data: daySum
                                 },
                                 {
@@ -108,12 +119,12 @@ $.ajax({
                                         normal: {
                                             label: {
                                                 show: true,
-                                                position: 'top',
+                                                position: "top",
                                             }
                                         }
                                     },
-                                    name: '点播时长均值',
-                                    type: 'bar',
+                                    name: "点播时长均值",
+                                    type: "bar",
                                     data: dayAvg
                                 }
                             ]
@@ -135,15 +146,15 @@ $.ajax({
         alert("图表请求数据失败!");
         dayDur.hideLoading();
     }
-})
+});
 
 //点播时长按日分析，查询并显示图表
-$(".play-search-1").click(function(){
+$(".pdd-search").click(function(){
     var newDayDate = [];
-    var newDaySum = [];  
+    var newDaySum = [];
     var newDayAvg = [];
-    var startTime = $("#startTime-pd").val();
-    var endTime = $("#endTime-pd").val();
+    var startTimePdd = $(".start-time-pdd").val();
+    var endTimePdd = $(".end-time-pdd").val();
     $.ajax({
         type: "get",
         url: "./json/day-sum.json",
@@ -176,14 +187,14 @@ $(".play-search-1").click(function(){
                             dayDur.hideLoading();
                             dayDur.setOption({
                                 title: {
-                                    text: '用户点播时长按日分析图表'
+                                    text: "用户点播时长按日分析图表"
                                 },
                                 legend: {
-                                    data: ['点播时长总量', '点播时长均值'],
+                                    data: ["点播时长总量", "点播时长均值"],
                                 },
                                 xAxis: {
                                     axisLabel: {
-                                        rotate: '45'
+                                        rotate: "45"
                                     },
                                     data: newDayDate
                                 },
@@ -193,12 +204,12 @@ $(".play-search-1").click(function(){
                                             normal: {
                                                 label: {
                                                     show: true,
-                                                    position: 'top'
+                                                    position: "top"
                                                 }
                                             }
                                         },
-                                        name: '点播时长总量',
-                                        type: 'bar',
+                                        name: "点播时长总量",
+                                        type: "bar",
                                         data: newDaySum
                                     },
                                     {
@@ -206,12 +217,12 @@ $(".play-search-1").click(function(){
                                             normal: {
                                                 label: {
                                                     show: true,
-                                                    position: 'top',
+                                                    position: "top"
                                                 }
                                             }
                                         },
-                                        name: '点播时长均值',
-                                        type: 'bar',
+                                        name: "点播时长均值",
+                                        type: "bar",
                                         data: newDayAvg
                                     }
                                 ]
@@ -234,4 +245,4 @@ $(".play-search-1").click(function(){
             dayDur.hideLoading();
         }
     })
-})
+});
