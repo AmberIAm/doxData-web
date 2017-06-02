@@ -106,10 +106,10 @@ $.ajax({
 //图表配置项
 option = {
     grid: {
-        left: "5%",
-        top: 90,
-        right: "4%",
-        bottom: 70,
+        left: "8%",
+        top: "25%",
+        right: "2%",
+        bottom: "30%",
         tooltip: {
             trigger: "item",
             formatter: "{a}<br/>{b} : {c} (万户)"
@@ -145,7 +145,7 @@ option = {
     xAxis: {
         axisLabel: {
             interval: "0",
-            rotate: "45",
+            rotate: "45"
         },
         data: userDate
     },
@@ -181,7 +181,7 @@ option = {
                 normal: {
                     label: {
                         show: true,
-                        position: "top",
+                        position: "top"
                     }
                 }
             },
@@ -307,7 +307,7 @@ $(".ut-search").click(function(){
         xAxis: {
             axisLabel: {
                 interval: "0",
-                rotate: "45",
+                rotate: "45"
             },
             data: newUserDate
         },
@@ -343,7 +343,7 @@ $(".ut-search").click(function(){
                     normal: {
                         label: {
                             show: true,
-                            position: "top",
+                            position: "top"
                         }
                     }
                 },

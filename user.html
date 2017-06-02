@@ -1,0 +1,269 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户设置 | 多可视搜狐专区 - 数据分析系统</title>
+    <meta name="description" content="用户点播时长分析 | 多可视搜狐专区 - 数据分析系统">
+    <meta name="keywords" content="用户点播时长分析 | 多可视搜狐专区 - 数据分析系统">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="cache-control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="用户点播时长分析" />
+    <link rel="stylesheet" href="css/amazeui.min.css"/>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/amazeui.datetimepicker.css"/>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="rl-body">
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，多可视搜狐专区 - 数据分析系统 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<!-- 顶部栏开始 -->
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="index.html"><strong>多可视搜狐专区 - 数据分析系统</strong></a>
+    </div>
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li class="am-hide-sm-only"><div id="admin" href="#"></div></li>
+            <li class="am-hide-sm-only"><a id="log-out" href="#"><span class="am-icon-power-off"></span> 注销</a></li>
+        </ul>
+    </div>
+</header>
+<!-- 顶部栏结束 -->
+
+<div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <ul class="am-list admin-sidebar-list">
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-1'}"><span class="am-icon-align-left"></span> 用户分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-1">
+                        <li><a href="index.html"><span class="am-icon-user"></span> 用户类型</a></li>
+                    </ul>
+                </li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-2'}"><span class="am-icon-align-left"></span> 点播分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-2">
+                        <li><a href="play.html"><span class="am-icon-puzzle-piece"></span> 点播时长</a></li>
+                    </ul>
+                </li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-3'}"><span class="am-icon-align-left"></span> 用户管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-3">
+                        <li><a href="#" class="am-active"><span class="am-icon-puzzle-piece"></span> 用户设置</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- sidebar end -->
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="admin-content-body">
+            <div class="am-cf am-padding am-padding-bottom-0 sub-title">
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户设置</strong></div>
+            </div>
+
+            <!--主要内容开始-->
+            <div class="am-tabs mg-bottom">
+                <div class="am-tabs-bd">
+                    <div class="am-tab-panel am-fade am-in am-active">
+                        <!-- 查询按钮开始 -->
+                        <div class="am-g">
+                            <div class="am-u-lg-6 new-u">
+                                <button class="am-btn am-btn-default new-btn">
+                                    <i class="am-icon-plus"></i>
+                                    新增
+                                </button>
+                                <button class="am-btn am-btn-default delp-btn">
+                                    <i class="am-icon-trash"></i>
+                                    批量删除
+                                </button>
+                            </div>
+                            <div class="am-u-lg-3 search-u">
+                                <div class="am-input-group">
+                                    <input type="text" class="am-form-field search-field" value="请输入姓名进行搜索">
+                                    <span class="am-input-group-btn">
+                                        <button class="am-btn am-btn-default search-form" type="button"><span class="am-icon-search"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 查询按钮结束 -->
+                        <div class="form-container">
+                            <!--用户列表开始-->
+                            <table class="am-table am-table-hover am-text-nowrap am-table-centered user-form">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>用户名</th>
+                                        <th>类型</th>
+                                        <th>姓名</th>
+                                        <th>修改日期</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <!--用户列表结束-->
+                        </div>
+                        <!--记录总数及分页开始-->
+                        <div class="am-g list-record">
+                            <div class="am-u-lg-2 record-u">
+                                <div class="record-detail">共<span class="record-num"></span>条记录</div>
+                            </div>
+                            <div class="am-u-lg-2 page-u">
+                                <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
+                                    <li class="am-pagination-prev">
+                                        <a href="#" class=""><i class="am-icon-angle-double-left"></i></a>
+                                    </li>
+                                    <li class="am-pagination-next">
+                                        <a href="#" class=""><i class="am-icon-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--记录总数及分页结束-->
+                        <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+                        <!--注意事项开始-->
+                        <div class="am-g">注：此处填写注意事项或随意</div>
+                        <!--注意事项结束-->
+                    </div>
+                </div>
+            </div>
+            <!--主要内容结束-->
+
+            <!--新增数据弹窗开始-->
+            <div class="am-modal am-modal-prompt" tabindex="-1" id="new-data">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">请填写相关信息</div>
+                    <form id="newForm" class="mo-main">
+                        <div class="am-g am-form-group">
+                            <label for="newId" class="am-u-lg-2 moForm-til">ID</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp new-id" name="newId" id="newId"/>
+                        </div>
+                        <div class="am-g am-form-group">
+                            <label for="newUser" class="am-u-lg-2 moForm-til">用户名</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp new-user"  name="newUser" id="newUser"/>
+                        </div>
+                        <div class="am-g am-form-group">
+                            <label for="newType" class="am-u-lg-2 moForm-til">类型</label>
+                            <div class="am-u-lg-2 moForm-inp new-type">
+                                <select id="newType" name="newType" required>
+                                    <option value="1">普通</option>
+                                    <option value="2">高级</option>
+                                </select>
+                                <span class="am-form-caret"></span>
+                            </div>
+                        </div>
+                        <div class="am-g am-form-group">
+                            <label for="newName" class="am-u-lg-2 moForm-til">姓名</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp new-name" name="newName" id="newName"/>
+                        </div>
+                    </form>
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                        <span class="am-modal-btn" data-am-modal-confirm>确认</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--新增数据弹窗结束-->
+            <!--批量删除弹窗开始-->
+            <div class="am-modal am-modal-confirm" tabindex="-1" id="del-part">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">提示</div>
+                    <div class="am-modal-bd">
+                        确定要删除吗？
+                    </div>
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                    </div>
+                </div>
+            </div>
+            <!--批量删除弹窗结束-->
+            <!--修改数据弹窗开始-->
+            <div class="am-modal am-modal-prompt" tabindex="-1" id="mo-data">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">修改信息</div>
+                    <div class="mo-main">
+                        <div class="am-g">
+                            <span class="am-u-lg-2 moForm-til">ID</span>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-id" name="id" value="1"/>
+                        </div>
+                        <div class="am-g">
+                            <span class="am-u-lg-2 moForm-til">用户名</span>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-user" name="user" value="1"/>
+                        </div>
+                        <div class="am-g">
+                            <span class="am-u-lg-2 moForm-til">类型</span>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-type" name="type" value="1"/>
+                        </div>
+                        <div class="am-g">
+                            <span class="am-u-lg-2 moForm-til">姓名</span>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-name" name="name" value="1"/>
+                        </div>
+                    </div>
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                        <span class="am-modal-btn" data-am-modal-confirm>保存</span>
+                    </div>
+                </div>
+            </div>
+            <!--修改数据弹窗结束-->
+            <!--删除单条数据弹窗开始-->
+            <div class="am-modal am-modal-confirm" tabindex="-1" id="del-one">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">提示</div>
+                    <div class="am-modal-bd">
+                        确定要删除这条数据吗？
+                    </div>
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                    </div>
+                </div>
+            </div>
+            <!--删除单条数据弹窗结束-->
+        </div>
+    </div>
+    <!-- content end -->
+</div>
+
+<!-- 底部栏开始 -->
+<footer class="main-footer">
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+    <p class="foot-text">© 2017 Singrand Infotech.</p>
+</footer>
+<!-- 底部栏结束 -->
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/app.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/amazeui.datetimepicker.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/amazeui.min.js"></script>
+<script src="js/login.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/date.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/form-user.js"></script>
+</body>
+</html>

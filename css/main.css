@@ -34,13 +34,128 @@
 	border: none;
 }
 
+.am-pagination {
+    margin: 0.4em 0 0.2em;
+    float: right;
+}
+
+.am-pagination>li>a {
+    border: none;
+    color: #000;
+}
+
+.am-table>tbody>tr>td {
+    vertical-align: middle;
+}
+
+.am-table {
+    margin-bottom: 0;
+    color: #000;
+}
+
 .chart-container {
 	border: solid 1px #ccc;
 	margin-top: 10px;
-	min-width: 450px;
-	height: 400px;
+	min-width: 600px;
+	height: 450px;
 }
 
 .user-am-g {
 	padding-top: 10px;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.list-button {
+    width: 84px;
+}
+
+.list-record {
+    margin: 0.5rem 0;
+}
+
+.record-detail {
+    display: inline;
+    height: 50px;
+    line-height: 50px;
+}
+
+.new-u {
+    margin-left: -18px;
+}
+
+.record-u {
+    margin-left: -12px;
+}
+
+.search-u {
+    margin-right: -18px;
+}
+
+.page-u {
+    margin-right: -18px;
+}
+
+.am-divider {
+    margin: 0 auto 1rem;
+}
+
+.form-container {
+    border: solid 1px #ccc;
+    margin-top: 10px;
+    min-width: 450px;
+    max-height: 400px;
+}
+
+.am-modal-dialog {
+    color: #353f49;
+}
+
+.moForm-til {
+    height: 33px;
+    line-height: 40px;
+    text-align: left;
+}
+
+.moForm-inp {
+    margin-right: 15px;
+}
+
+.mo-main {
+    margin: 10px 10px 30px;
+}
+
+.am-modal-footer {
+    border-top: solid 1px rgba(204, 204, 204, 0.2);
+}
+
+.che-style {
+    background-color: #f9f9f9;
+}
+
+.del-btn {
+    margin-left: 5px;
+}
+
+.del-btn i,
+.mo-btn i{
+    margin-right: 5px;
+}
+
+.new-type {
+    display: block;
+    border-radius: 0;
+    padding: 5px;
+    line-height: 1.8rem;
+    width: 80%;
+}
+
+.new-type select {
+    width: 416px;
+    height: 33px;
+    margin-left: -5px;
+    border: 1px solid #dedede;
 }

@@ -11,10 +11,10 @@ setTimeout(function() {
 //初步配置图表通用项
 var option = {
     grid: {
-        left: "5%",
-        top: 90,
-        right: "4%",
-        bottom: 70,
+        left: "8%",
+        top: "25%",
+        right: "2%",
+        bottom: "30%",
         tooltip: {
             trigger: "item",
             formatter: "{a}<br/>{b} : {c} (万户)"
