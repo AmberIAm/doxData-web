@@ -162,7 +162,12 @@ $(function() {
                         var delpVal = $(":checked").map(function(){
                             return $(this).val();
                         }).get();
-                        delpVal.pop();
+                        for (var m = 0; m < delpVal.length; m++) {
+                            if (delpVal[m] == "" || typeof(delpVal[m]) == "undefined") {
+                                delpVal.splice(m, 1);
+                                m = m - 1;
+                            }
+                        }
                         if(delpVal.length == 0) {
                             alert("请选择需要修改的数据！");
                         } else {
