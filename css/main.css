@@ -114,17 +114,17 @@ input[type="checkbox"] {
     color: #353f49;
 }
 
-.moForm-til {
+.form-til {
     height: 33px;
     line-height: 40px;
     text-align: left;
 }
 
-.moForm-inp {
+.form-inp {
     margin-right: 15px;
 }
 
-.mo-main {
+.form-main {
     margin: 10px 10px 30px;
 }
 
@@ -145,7 +145,7 @@ input[type="checkbox"] {
     margin-right: 5px;
 }
 
-.new-type {
+.form-type {
     display: block;
     border-radius: 0;
     padding: 5px;
@@ -153,7 +153,7 @@ input[type="checkbox"] {
     width: 80%;
 }
 
-.new-type select {
+.form-type select {
     width: 416px;
     height: 33px;
     margin-left: -5px;

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/amazeui.datetimepicker.css"/>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pagination.css">
 </head>
 <body class="rl-body">
 <!--[if lte IE 9]>
@@ -110,7 +111,7 @@
                                         <th>操作</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="content">
                                 </tbody>
                             </table>
                             <!--用户列表结束-->
@@ -120,16 +121,7 @@
                             <div class="am-u-lg-2 record-u">
                                 <div class="record-detail">共<span class="record-num"></span>条记录</div>
                             </div>
-                            <div class="am-u-lg-2 page-u">
-                                <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
-                                    <li class="am-pagination-prev">
-                                        <a href="#" class=""><i class="am-icon-angle-double-left"></i></a>
-                                    </li>
-                                    <li class="am-pagination-next">
-                                        <a href="#" class=""><i class="am-icon-angle-double-right"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div id="pagination" class="pagination am-u-lg-2 page-u"></div>
                         </div>
                         <!--记录总数及分页结束-->
                         <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
@@ -145,19 +137,20 @@
             <div class="am-modal am-modal-prompt" tabindex="-1" id="new-data">
                 <div class="am-modal-dialog">
                     <div class="am-modal-hd">请填写相关信息</div>
-                    <form id="newForm" class="mo-main">
+                    <form id="newForm" class="form-main">
                         <div class="am-g am-form-group">
-                            <label for="newId" class="am-u-lg-2 moForm-til">ID</label>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp new-id" name="newId" id="newId"/>
+                            <label for="newId" class="am-u-lg-2 form-til">ID</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 form-inp" name="newId" id="newId" required/>
                         </div>
                         <div class="am-g am-form-group">
-                            <label for="newUser" class="am-u-lg-2 moForm-til">用户名</label>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp new-user"  name="newUser" id="newUser"/>
+                            <label for="newUser" class="am-u-lg-2 form-til">用户名</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 form-inp"  name="newUser" id="newUser" required/>
                         </div>
                         <div class="am-g am-form-group">
-                            <label for="newType" class="am-u-lg-2 moForm-til">类型</label>
-                            <div class="am-u-lg-2 moForm-inp new-type">
+                            <label for="newType" class="am-u-lg-2 form-til">类型</label>
+                            <div class="am-u-lg-2 form-inp form-type">
                                 <select id="newType" name="newType" required>
+                                    <option value="">请选择类型</option>
                                     <option value="1">普通</option>
                                     <option value="2">高级</option>
                                 </select>
@@ -165,17 +158,17 @@
                             </div>
                         </div>
                         <div class="am-g am-form-group">
-                            <label for="newName" class="am-u-lg-2 moForm-til">姓名</label>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp new-name" name="newName" id="newName"/>
+                            <label for="newName" class="am-u-lg-2 form-til">姓名</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 form-inp" name="newName" id="newName" required/>
                         </div>
                     </form>
                     <div class="am-modal-footer">
                         <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                        <!--<button class="am-modal-btn am-btn-secondary" type="submit" data-am-modal-confirm>提交</button>-->
                         <span class="am-modal-btn" data-am-modal-confirm>确认</span>
                     </div>
                 </div>
             </div>
-
             <!--新增数据弹窗结束-->
             <!--批量删除弹窗开始-->
             <div class="am-modal am-modal-confirm" tabindex="-1" id="del-part">
@@ -194,28 +187,35 @@
             <!--修改数据弹窗开始-->
             <div class="am-modal am-modal-prompt" tabindex="-1" id="mo-data">
                 <div class="am-modal-dialog">
-                    <div class="am-modal-hd">修改信息</div>
-                    <div class="mo-main">
-                        <div class="am-g">
-                            <span class="am-u-lg-2 moForm-til">ID</span>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-id" name="id" value="1"/>
+                    <div class="am-modal-hd">请填写相关信息</div>
+                    <form id="moForm" class="form-main">
+                        <div class="am-g am-form-group">
+                            <label for="moId" class="am-u-lg-2 form-til">ID</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 form-inp" name="moId" id="moId" required/>
                         </div>
-                        <div class="am-g">
-                            <span class="am-u-lg-2 moForm-til">用户名</span>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-user" name="user" value="1"/>
+                        <div class="am-g am-form-group">
+                            <label for="moUser" class="am-u-lg-2 form-til">用户名</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 form-inp"  name="moUser" id="moUser" required/>
                         </div>
-                        <div class="am-g">
-                            <span class="am-u-lg-2 moForm-til">类型</span>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-type" name="type" value="1"/>
+                        <div class="am-g am-form-group">
+                            <label for="moType" class="am-u-lg-2 form-til">类型</label>
+                            <div class="am-u-lg-2 form-inp form-type">
+                                <select id="moType" name="moType" required>
+                                    <option value="">请选择类型</option>
+                                    <option value="1">普通</option>
+                                    <option value="2">高级</option>
+                                </select>
+                                <span class="am-form-caret"></span>
+                            </div>
                         </div>
-                        <div class="am-g">
-                            <span class="am-u-lg-2 moForm-til">姓名</span>
-                            <input type="text" class="am-modal-prompt-input am-u-lg-2 moForm-inp mo-name" name="name" value="1"/>
+                        <div class="am-g am-form-group">
+                            <label for="moName" class="am-u-lg-2 form-til">姓名</label>
+                            <input type="text" class="am-modal-prompt-input am-u-lg-2 form-inp" name="moName" id="moName" required/>
                         </div>
-                    </div>
+                    </form>
                     <div class="am-modal-footer">
                         <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-                        <span class="am-modal-btn" data-am-modal-confirm>保存</span>
+                        <span class="am-modal-btn" data-am-modal-confirm>确认</span>
                     </div>
                 </div>
             </div>
@@ -260,6 +260,7 @@
 <script src="js/amazeui.datetimepicker.min.js"></script>
 <script src="js/echarts.min.js"></script>
 <script src="js/amazeui.min.js"></script>
+<script src="js/jquery.pagination.js"></script>
 <script src="js/login.js"></script>
 <script src="js/logout.js"></script>
 <script src="js/date.js"></script>
